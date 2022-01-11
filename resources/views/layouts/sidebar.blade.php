@@ -10,7 +10,11 @@
 
      {{-- Superadmin --}}
 
-        <li class="header">SUPERADMIN</li>
+     @if (Auth::user()->level == '99')
+     <li class="header">SUPERADMIN</li>
+     @else
+     <li class="header">Menu</li>
+     @endif
         
         @if (Auth::user()->level == '99')
             <li>

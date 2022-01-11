@@ -16,12 +16,26 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $loginLevel=Auth::user()->level;
-        $jabatan = Jabatan::where('kode_jabatan',$loginLevel)->pluck('nama_kolom')->first();
-        
-        if ($loginLevel == '11' || $loginLevel == '12' || $loginLevel == '13') {
+        $loginLevel=Auth::user()->nik;
+        $jabatan = Jabatan::where('kode_jabatan',Auth::user()->level)->pluck('nama_kolom')->first();
+                // dd($loginLevel);
+
+        if (Auth::user()->level == '11' || Auth::user()->level == '12' || Auth::user()->level == '13') {
             $master = Master::with('jenis')->where($jabatan, $loginLevel )->get();
-        }elseif ($loginLevel) {
+            $count_A2 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','11')->count();
+            $count_A2_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','12')->count();
+            $count_P1 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','13')->count();
+            $count_P1_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','14')->count();
+            $count_P2 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','21')->count();
+            $count_P2_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','22')->count();
+            $count_tercapai_A2 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','11')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_A2_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','12')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P1 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','13')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P1_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','14')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P2 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','21')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P2_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','22')->where('nominal_bayar','>',1)->count();
+        
+        }elseif (Auth::user()->level == '99') {
             $master = Master::with('jenis')->get();
             $count_A2 = Master::with('jenis')->where('jns','11')->count();
             $count_A2_murni = Master::with('jenis')->where('jns','12')->count();
@@ -29,14 +43,14 @@ class DashboardController extends Controller
             $count_P1_murni = Master::with('jenis')->where('jns','14')->count();
             $count_P2 = Master::with('jenis')->where('jns','21')->count();
             $count_P2_murni = Master::with('jenis')->where('jns','22')->count();
-            $count_tercapai_A2 = Master::with('jenis')->where('jns','11')->where('sts_byr','>','1')->count();
-            $count_tercapai_A2_murni = Master::with('jenis')->where('jns','12')->where('sts_byr','>','1')->count();
-            $count_tercapai_P1 = Master::with('jenis')->where('jns','13')->where('sts_byr','>','1')->count();
-            $count_tercapai_P1_murni = Master::with('jenis')->where('jns','14')->where('sts_byr','>','1')->count();
-            $count_tercapai_P2 = Master::with('jenis')->where('jns','21')->where('sts_byr','>','1')->count();
-            $count_tercapai_P2_murni = Master::with('jenis')->where('jns','22')->where('sts_byr','>','1')->count();
+            $count_tercapai_A2 = Master::with('jenis')->where('jns','11')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_A2_murni = Master::with('jenis')->where('jns','12')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P1 = Master::with('jenis')->where('jns','13')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P1_murni = Master::with('jenis')->where('jns','14')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P2 = Master::with('jenis')->where('jns','21')->where('nominal_bayar','>',1)->count();
+            $count_tercapai_P2_murni = Master::with('jenis')->where('jns','22')->where('nominal_bayar','>',1)->count();
         }
-        
+
         return view('dashboard',compact(
             'master',
             'count_A2',

@@ -56,7 +56,7 @@
                         <div class="small-box @if ($count_tercapai_A2_murni != null ) @if ($count_tercapai_A2_murni / $count_A2_murni * 100 > 30) bg-green @else bg-red @endif @else bg-red @endif" >
                             <div class="inner">
                                 <center>
-                                    <h3>@if ($count_tercapai_A2_murni != null) {{ round($count_tercapai_A2_murni / $count_A2_murni * 100,1) }}% @endif </h3>
+                                    <h3>@if ($count_tercapai_A2_murni != null) {{ round($count_tercapai_A2_murni / $count_A2_murni * 100,1) }}% @else 0% @endif </h3>
                                     <p>Konsumen A2 Murni</p>
                                 </center>
                             </div>

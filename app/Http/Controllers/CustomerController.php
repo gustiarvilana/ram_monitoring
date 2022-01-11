@@ -26,15 +26,15 @@ class CustomerController extends Controller
      */
     public function data(Request $request)
     {   
-        $loginLevel=Auth::user()->level;
-        $jabatan = Jabatan::where('kode_jabatan',$loginLevel)->pluck('nama_kolom')->first();
+        $loginLevel=Auth::user()->nik;
+        $jabatan = Jabatan::where('kode_jabatan',Auth::user()->level)->pluck('nama_kolom')->first();
 
         $filter = $request->input('name');
         $filter_kolektor = $request->input('kolektor');
         $filter_jenis = $request->input('jenis');
         $filter_sts_bayar = $request->input('sts_bayar');
 
-        if ($loginLevel == '11' || $loginLevel == '12' || $loginLevel == '13') {
+        if (Auth::user()->level == '11' || Auth::user()->level == '12' || Auth::user()->level == '13') {
                 $customer = Master::with('jenis')->with('kodekota')->where($jabatan, $loginLevel );
             if ($filter != null) {
                 $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
@@ -74,8 +74,8 @@ class CustomerController extends Controller
                     ->orWhere('alamat', $filter );
                 }
             }
-        }elseif(Auth::user()){
-            $customer = Master::with('jenis')->with('kodekota')->limit(20)->get();
+        }elseif(Auth::user()->level == '99'){
+            $customer = Master::with('jenis')->with('kodekota')->get();
             if ($filter != null) {
                 $customer = Master::with('kodekota')->with('Jenis')
                 ->where('nama_konsumen','like', '%' . $filter . '%')
@@ -119,7 +119,7 @@ class CustomerController extends Controller
         return datatables()::of($customer)
             ->addIndexColumn()
             ->addColumn('sts_bayar', function($customer){
-                if ($customer->sts_byr == '1') {
+                if ($customer->nominal_bayar < 1) {
                     return '<span class="label label-danger"> Belum Bayar</span>';
                 }else{
                     return '<span class="label label-success"> Sudah Bayar</span>';
@@ -193,12 +193,12 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $customer = Master::with('tagihan')->findOrFail($id)->first();
+        $customer = Master::with('tagihan')->where('nosp',$id)->first();
         $kwitansi = $customer['kwitansi'];
         $kwitansi_9=substr($kwitansi,0,9);
+        // dd($kwitansi);
         
-        $tagihan = Tagihan::where('no_kwitansi',$kwitansi)->orderBy('cicilan_ke','asc')->get();
-        dd($tagihan);
+        $tagihan = Tagihan::where('no_kwitansi',$kwitansi_9)->orderBy('cicilan_ke','asc')->get();
 
         return view('v_customer.detail',compact('customer','tagihan'));
     }

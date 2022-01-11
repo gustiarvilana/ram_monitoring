@@ -34,6 +34,7 @@
                         <th>Kota</th>
                         <th>Jenis</th>
                         <th>Kolektor</th>
+                        <th>CCC</th>
                         <th>Status Bayar</th>
                         <th> = Nominal </th>
                         <th> Selisih </th>
@@ -73,6 +74,7 @@
                 {data: 'kodekota.nama_kota' },
                 {data: 'jenis.nama_jenis'},
                 {data: 'kd_kolektor'},
+                {data: 'kd_c3'},
                 {data: 'sts_bayar'},
                 {data: 'sesuai_bayar'},
                 {data: 'selisih'},

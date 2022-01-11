@@ -9,5 +9,6 @@ class Tagihan extends Model
 {
     use HasFactory;
     protected $table = 'tagihan_collector';
+    protected $primaryKey = 'tgl_penagihan';
     protected $guarded = [];
 }
