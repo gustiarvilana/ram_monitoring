@@ -67,6 +67,8 @@
                         <a href="#"><i class="fa fa-circle text-success"></i> {{ Auth::user()->username }}</a>
                     </div>
                 </div>
+                <br>
+                <br>
                 @include('layouts.sidebar')
             </section>
             <!-- /.sidebar -->
