@@ -57,7 +57,7 @@
                             <div class="inner">
                                 <center>
                                     <h3>@if ($count_tercapai_A2_murni != null) {{ round($count_tercapai_A2_murni / $count_A2_murni * 100,1) }}% @else 0% @endif </h3>
-                                    <p>Konsumen A2 Murni</p>
+                                    <p>Murni</p>
                                 </center>
                             </div>
                             <div class="icon">
