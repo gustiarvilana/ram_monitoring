@@ -80,6 +80,9 @@
             <section class="content-header">
                 <h1>
                     @yield('title')
+                    <div>
+                        <small><b>Periode = {{ tanggal_indonesia(date('Y-m-d',strtotime("-1 days"))) }}</b></small>
+                    </div>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>

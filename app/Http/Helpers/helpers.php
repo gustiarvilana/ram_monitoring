@@ -30,7 +30,7 @@ function terbilang ($angka) {
     return $terbilang;
 }
 
-function tanggal_indonesia($tgl, $tampil_hari = true)
+function tanggal_indonesia($tgl, $tampil_hari = false)
 {
     $nama_hari  = array(
         'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu'

@@ -36,7 +36,8 @@
                         <th>Kolektor</th>
                         <th>CCC</th>
                         <th>Status Bayar</th>
-                        <th> = Nominal </th>
+                        <th> = Nominal target </th>
+                        <th> = Nominal Bayar </th>
                         <th> Selisih </th>
                         <th>Action</th>
                     </tr>
@@ -76,6 +77,7 @@
                 {data: 'kd_kolektor'},
                 {data: 'kd_c3'},
                 {data: 'sts_bayar'},
+                {data: 'besar_angsur_bln'},
                 {data: 'sesuai_bayar'},
                 {data: 'selisih'},
                 {data: 'aksi'},

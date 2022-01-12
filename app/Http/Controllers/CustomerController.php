@@ -33,6 +33,7 @@ class CustomerController extends Controller
         $filter_kolektor = $request->input('kolektor');
         $filter_jenis = $request->input('jenis');
         $filter_sts_bayar = $request->input('sts_bayar');
+        $date=date('Ym');
 
         if (Auth::user()->level == '11' || Auth::user()->level == '12' || Auth::user()->level == '13') {
                 $customer = Master::with('jenis')->with('kodekota')->where($jabatan, $loginLevel );
@@ -75,7 +76,11 @@ class CustomerController extends Controller
                 }
             }
         }elseif(Auth::user()->level == '99'){
-            $customer = Master::with('jenis')->with('kodekota')->get();
+            $customer = Master::with('jenis')->with('kodekota')
+            ->with('tagihan')->limit(100)->get();
+
+            // dd($customer);
+
             if ($filter != null) {
                 $customer = Master::with('kodekota')->with('Jenis')
                 ->where('nama_konsumen','like', '%' . $filter . '%')
@@ -119,7 +124,7 @@ class CustomerController extends Controller
         return datatables()::of($customer)
             ->addIndexColumn()
             ->addColumn('sts_bayar', function($customer){
-                if ($customer->nominal_bayar < 1) {
+                if ($customer->tgl_bayar < 1) {
                     return '<span class="label label-danger"> Belum Bayar</span>';
                 }else{
                     return '<span class="label label-success"> Sudah Bayar</span>';
@@ -128,7 +133,7 @@ class CustomerController extends Controller
             })
             ->addColumn('sesuai_bayar', function($customer){
                 if ($customer->nominal_bayar) {
-                    if ($customer->besar_angsur_bln == $customer->nominal_bayar) {
+                    if ($customer->besar_angsur_bln == $customer->nominal_bayar ) {
                         return '<span class="label label-success"> Nominal Sesuai </span>';
                     }else{
                         return '<span class="label label-danger"> Nominal Tidak Sesuai</span>';

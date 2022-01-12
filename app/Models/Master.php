@@ -24,6 +24,20 @@ class Master extends Model
 
      public function tagihan()
     {
-        return $this->hasMany(Tagihan::class, 'no_kwitansi', 'kwitansi');
+        return $this->hasOne(Tagihan::class, 'no_kwitansi', 'kwitansi')->orderBy('cicilan_ke','desc');
     }
+
+    //  public function tagih1()
+    // {
+    //     return $this->hasMany(Tagihan::class, 'no_kwitansi', 'kwitansi',);
+    // }
+    //  public function tagih2()
+    // {
+    //     return $this->hasMany(Tagihan::class, 'cicilan_ke', 'cicilan_ke',);
+    // }
+    //  public function tagihan()
+    // {
+    //     $data= collect([$this->tagih1, $this->tagih2,]);
+    //     return $data->unique();
+    // }
 }
