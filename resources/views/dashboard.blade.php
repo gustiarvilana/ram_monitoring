@@ -179,7 +179,9 @@
                                     </center>
                                 </div>
                             </div>
-                        <table class="table table-striped table-bordered table-inverse table-responsive">
+                            <div class="box box-success">
+                                <div class="box box-body table-responsive">
+                                    <table class="table table-striped table-bordered table-inverse table-responsive">
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>No</th>
@@ -220,6 +222,8 @@
                                 </tr>
                             </tbody>
                         </table>
+                                </div>
+                            </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
