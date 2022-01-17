@@ -134,9 +134,9 @@ class CustomerController extends Controller
             ->addColumn('sesuai_bayar', function($customer){
                 if ($customer->nominal_bayar) {
                     if ($customer->besar_angsur_bln == $customer->nominal_bayar ) {
-                        return '<span class="label label-success"> Nominal Sesuai </span>';
+                        return '<span class="label label-success">  '.$customer->nominal_bayar.'  </span>';
                     }else{
-                        return '<span class="label label-danger"> Nominal Tidak Sesuai</span>';
+                        return '<span class="label label-danger"> '.$customer->nominal_bayar.'</span>';
                     }
                     return;
                 }
@@ -154,10 +154,21 @@ class CustomerController extends Controller
                     <a href="'.route('customer.show',$customer->nosp).'" class="btn btn-info btn-xs">Show</a>
                 ';
             })
+            ->addColumn('via', function($customer){
+                if ($customer->sts_data) {
+                    if ($customer->sts_data == '1' ) {
+                        return '<span class="label label-primary">  Manual  </span>';
+                    }else{
+                        return '<span class="label label-info"> Online </span>';
+                    }
+                    return;
+                }
+            })
             ->rawColumns([
                     'aksi',
                     'sts_bayar',
                     'sesuai_bayar',
+                    'via',
                     'selisih'
                 ])
             ->make(true);

@@ -94,6 +94,7 @@ Customer Detail
                             <th>koordinator</th>
                             <th>Cicilan Ke</th>
                             <th>Nominal Tagih</th>
+                            <th>VIA</th>
                             <th>tgl Jatuh tempo</th>
                             <th>Keterangan</th>
                         </tr>
@@ -107,6 +108,7 @@ Customer Detail
                             <td>{{ $item->koordinator_clt  }}</td>
                             <td>{{ $item->cicilan_ke  }}</td>
                             <td>{{ $item->nominal_tagih  }}</td>
+                            <td>{{ $item->via  }}</td>
                             <td>{{ $item->tgl_jt_tempo  }}</td>
                             <td>{{ $item->ket  }}</td>
                         </tr>

@@ -36,6 +36,7 @@
                         <th>Kolektor</th>
                         <th>CCC</th>
                         <th>Status Bayar</th>
+                        <th>VIA</th>
                         <th> = Nominal target </th>
                         <th> = Nominal Bayar </th>
                         <th> Selisih </th>
@@ -77,6 +78,7 @@
                 {data: 'kd_kolektor'},
                 {data: 'kd_c3'},
                 {data: 'sts_bayar'},
+                {data: 'via'},
                 {data: 'besar_angsur_bln'},
                 {data: 'sesuai_bayar'},
                 {data: 'selisih'},

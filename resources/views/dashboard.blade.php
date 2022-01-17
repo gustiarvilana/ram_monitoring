@@ -259,8 +259,8 @@
                                     <td>6</td>
                                     <td>P2 Murni</td>
                                     <td> {{ format_uang($count_P2_murni) }} SP</td>
-                                    <td> {{ format_uang($count_tercapai_P2) }} SP</td>
-                                    <td> {{ format_uang($count_P2_murni - $count_tercapai_P2) }} SP</td>
+                                    <td> {{ format_uang($count_tercapai_P2_murni) }} SP</td>
+                                    <td> {{ format_uang($count_P2_murni - $count_tercapai_P2_murni) }} SP</td>
                                 </tr>
                             </tbody>
                         </table>
