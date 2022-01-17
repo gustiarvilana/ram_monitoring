@@ -77,7 +77,7 @@ class CustomerController extends Controller
             }
         }elseif(Auth::user()->level == '99'){
             $customer = Master::with('jenis')->with('kodekota')
-            ->with('tagihan')->get();
+            ->with('tagihan')->limit(100)->get();
 
             // dd($customer);
 
