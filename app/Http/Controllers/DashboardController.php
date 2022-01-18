@@ -35,7 +35,7 @@ class DashboardController extends Controller
             $count_tercapai_P2 = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','21')->where('nominal_bayar','>',1)->count();
             $count_tercapai_P2_murni = Master::with('jenis')->where($jabatan, $loginLevel )->where('jns','22')->where('nominal_bayar','>',1)->count();
         
-        }elseif (Auth::user()->level == '99') {
+        }elseif (Auth::user()->level == '99' || Auth::user()->level == '24') {
             $master = Master::with('jenis')->get();
             $count_A2 = Master::with('jenis')->where('jns','11')->count();
             $count_A2_murni = Master::with('jenis')->where('jns','12')->count();
