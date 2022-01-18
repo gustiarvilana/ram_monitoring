@@ -22,7 +22,7 @@ class UserController extends Controller
 
         $user = DB::table('users as a')
         ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
-        ->orderBy('id', 'DESC');
+        ->orderBy('a.id', 'DESC');
 
         if ($filter != null) {
             $user = DB::table('users as a')
