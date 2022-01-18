@@ -32,6 +32,7 @@
                         <th>NIK</th>
                         <th>Nama</th>
                         <th>Username</th>
+                        <th>Password</th>
                         <th>Email</th>
                         <th>Level</th>
                         <th>Aksi</th>
@@ -68,6 +69,7 @@
                 {data: 'nik'},
                 {data: 'name'},
                 {data: 'username'},
+                {data: 'pass'},
                 {data: 'email'},
                 {data: 'nama_jabatan'},
                 {data: 'aksi'},
