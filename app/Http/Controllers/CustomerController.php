@@ -75,7 +75,7 @@ class CustomerController extends Controller
                     ->orWhere('alamat', $filter );
                 }
             }
-        }elseif(Auth::user()->level == '99'){
+        }elseif(Auth::user()->level == '99' || Auth::user()->level == '24'){
             $customer = Master::with('jenis')->with('kodekota')
             ->with('tagihan')->limit(100)->get();
 
