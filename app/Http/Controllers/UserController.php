@@ -21,8 +21,7 @@ class UserController extends Controller
         $filter = $request->input('name');
 
         $user = DB::table('users as a')
-        ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
-        ->orderBy('a.id', 'DESC');
+        ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan');
 
         if ($filter != null) {
             $user = DB::table('users as a')
