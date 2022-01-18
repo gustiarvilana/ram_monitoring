@@ -79,11 +79,11 @@
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-xs-12 text-center">
                                     <a href="#">Sales</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /.row -->
                         </li>
                         <!-- Menu Footer-->
