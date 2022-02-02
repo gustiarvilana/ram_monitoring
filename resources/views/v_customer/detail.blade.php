@@ -43,7 +43,7 @@ Customer Detail
                             </div>
                             <th>Sisa</th>
                             <th>:</th>
-                            <th>Rp. {{ format_uang($item->$sisa) }}</th>
+                            <th>Rp. {{ format_uang($customer->sisa) }}</th>
                         </tr>
                         <tr>
                             <th>Alamat</th>
