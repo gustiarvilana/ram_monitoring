@@ -212,7 +212,7 @@ class CustomerController extends Controller
         $customer = Master::with('tagihan')->where('nosp',$id)->first();
         $kwitansi = $customer['kwitansi'];
         $kwitansi_9=substr($kwitansi,0,9);
-        // dd($kwitansi);
+        // dd($customer);
         
         $tagihan = Tagihan::where('no_kwitansi',$kwitansi_9)->orderBy('cicilan_ke','asc')->get();
 

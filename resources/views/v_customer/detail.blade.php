@@ -30,7 +30,7 @@ Customer Detail
                         <tr>
                             <th>Total Harga</th>
                             <th>:</th>
-                            <th>Rp. {{ format_uang($customer->besar_angsur_bln * 9) }}</th>
+                            <th>Rp. {{ format_uang($customer->besar_angsur_bln * 10) }}</th>
                         </tr>
                         <tr>
                             <div style="display: none">
@@ -43,7 +43,7 @@ Customer Detail
                             </div>
                             <th>Sisa</th>
                             <th>:</th>
-                            <th>Rp. {{ format_uang($customer->besar_angsur_bln * 9 - $total_bayar) }}</th>
+                            <th>Rp. {{ format_uang($sisa) }}</th>
                         </tr>
                         <tr>
                             <th>Alamat</th>
