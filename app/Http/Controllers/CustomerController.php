@@ -51,6 +51,26 @@ class CustomerController extends Controller
                 
                 if ($filter_tahap != null) {
                     $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
+                    ->where('kd_kolektor', $filter_kolektor );
+                }
+                if ($filter_jenis != null) {
+                    $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
+                    ->where('jns', $filter_jenis )
+                    ->where('kd_kolektor', $filter_kolektor );
+                }
+                if ($filter_sts_bayar != null) {
+                    $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
+                    ->where('sts_byr', $filter_sts_bayar )
+                    ->where('jns', $filter_jenis )
+                    ->where('kd_kolektor', $filter_kolektor );
+                }
+            }
+
+            if ($filter_tahap != null) {
+                 $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
+                    ->where('tahap_data', $filter_tahap );
+                if ($filter_kolektor != null) {
+                    $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                     ->where('tahap_data', $filter_tahap )
                     ->where('kd_kolektor', $filter_kolektor );
                 }
