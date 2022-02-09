@@ -30,13 +30,13 @@ class CustomerController extends Controller
         $jabatan = Jabatan::where('kode_jabatan',Auth::user()->level)->pluck('nama_kolom')->first();
 
         $filter = $request->input('name');
+        $filter_tahap = $request->input('tahap');
         $filter_kolektor = $request->input('kolektor');
         $filter_jenis = $request->input('jenis');
         $filter_sts_bayar = $request->input('sts_bayar');
-        $date=date('Ym');
 
         if (Auth::user()->level == '11' || Auth::user()->level == '12' || Auth::user()->level == '13') {
-                $customer = Master::with('jenis')->with('kodekota')->where($jabatan, $loginLevel );
+            $customer = Master::with('jenis')->with('kodekota')->where($jabatan, $loginLevel );
             if ($filter != null) {
                 $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                 ->where('nama_konsumen','like', '%' . $filter . '%')
@@ -44,43 +44,34 @@ class CustomerController extends Controller
                 ->orWhere('kwitansi', $filter )
                 ->orWhere('alamat', $filter );
             }
+            
             if ($filter_kolektor != null) {
                 $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                 ->where('kd_kolektor', $filter_kolektor );
-                if ($filter != null) {
+                
+                if ($filter_tahap != null) {
                     $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
-                    ->where('kd_kolektor', $filter_kolektor )
-                    ->where('nama_konsumen','like', '%' . $filter . '%')
-                    ->orWhere('nosp', $filter )
-                    ->orWhere('kwitansi', $filter )
-                    ->orWhere('alamat', $filter );
+                    ->where('tahap_data', $filter_tahap )
+                    ->where('kd_kolektor', $filter_kolektor );
                 }
                 if ($filter_jenis != null) {
                     $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                     ->where('jns', $filter_jenis )
-                    ->where('kd_kolektor', $filter_kolektor )
-                    ->where('nama_konsumen','like', '%' . $filter . '%')
-                    ->orWhere('nosp', $filter )
-                    ->orWhere('kwitansi', $filter )
-                    ->orWhere('alamat', $filter );
+                    ->where('tahap_data', $filter_tahap )
+                    ->where('kd_kolektor', $filter_kolektor );
                 }
                 if ($filter_sts_bayar != null) {
                     $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                     ->where('sts_byr', $filter_sts_bayar )
                     ->where('jns', $filter_jenis )
-                    ->where('kd_kolektor', $filter_kolektor )
-                    ->where('nama_konsumen','like', '%' . $filter . '%')
-                    ->orWhere('nosp', $filter )
-                    ->orWhere('kwitansi', $filter )
-                    ->orWhere('alamat', $filter );
+                    ->where('tahap_data', $filter_tahap )
+                    ->where('kd_kolektor', $filter_kolektor );
                 }
             }
         }elseif(Auth::user()->level == '99' || Auth::user()->level == '14'){
             $customer = Master::with('jenis')->with('kodekota')
             ->with('tagihan')->limit(100)->get();
 
-            // dd($customer);
-
             if ($filter != null) {
                 $customer = Master::with('kodekota')->with('Jenis')
                 ->where('nama_konsumen','like', '%' . $filter . '%')
@@ -88,35 +79,43 @@ class CustomerController extends Controller
                 ->orWhere('kwitansi', $filter )
                 ->orWhere('alamat', $filter );
             }
+            
             if ($filter_kolektor != null) {
                 $customer = Master::with('kodekota')->with('Jenis')
                 ->where('kd_kolektor', $filter_kolektor );
-                if ($filter != null) {
-                    $customer = Master::with('kodekota')->with('Jenis')
-                    ->where('kd_kolektor', $filter_kolektor )
-                    ->where('nama_konsumen','like', '%' . $filter . '%')
-                    ->orWhere('nosp', $filter )
-                    ->orWhere('kwitansi', $filter )
-                    ->orWhere('alamat', $filter );
-                }
                 if ($filter_jenis != null) {
                     $customer = Master::with('kodekota')->with('Jenis')
                     ->where('jns', $filter_jenis )
-                    ->where('kd_kolektor', $filter_kolektor )
-                    ->where('nama_konsumen','like', '%' . $filter . '%')
-                    ->orWhere('nosp', $filter )
-                    ->orWhere('kwitansi', $filter )
-                    ->orWhere('alamat', $filter );
+                    ->where('kd_kolektor', $filter_kolektor );
                 }
                 if ($filter_sts_bayar != null) {
                     $customer = Master::with('kodekota')->with('Jenis')
                     ->where('sts_byr', $filter_sts_bayar )
                     ->where('jns', $filter_jenis )
-                    ->where('kd_kolektor', $filter_kolektor )
-                    ->where('nama_konsumen','like', '%' . $filter . '%')
-                    ->orWhere('nosp', $filter )
-                    ->orWhere('kwitansi', $filter )
-                    ->orWhere('alamat', $filter );
+                    ->where('kd_kolektor', $filter_kolektor );
+                }
+            }
+
+            if ($filter_tahap != null) {
+                 $customer = Master::with('kodekota')->with('Jenis')
+                    ->where('tahap_data', $filter_tahap );
+                if ($filter_kolektor != null) {
+                    $customer = Master::with('kodekota')->with('Jenis')
+                    ->where('tahap_data', $filter_tahap )
+                    ->where('kd_kolektor', $filter_kolektor );
+                }
+                if ($filter_jenis != null) {
+                    $customer = Master::with('kodekota')->with('Jenis')
+                    ->where('jns', $filter_jenis )
+                    ->where('tahap_data', $filter_tahap )
+                    ->where('kd_kolektor', $filter_kolektor );
+                }
+                if ($filter_sts_bayar != null) {
+                    $customer = Master::with('kodekota')->with('Jenis')
+                    ->where('sts_byr', $filter_sts_bayar )
+                    ->where('jns', $filter_jenis )
+                    ->where('tahap_data', $filter_tahap )
+                    ->where('kd_kolektor', $filter_kolektor );
                 }
             }
         }

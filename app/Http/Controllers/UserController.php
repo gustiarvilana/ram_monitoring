@@ -22,6 +22,14 @@ class UserController extends Controller
 
         $user = DB::table('users as a')
         ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
+        ->select(
+            'nik',
+            'name',
+            'username',
+            'pass',
+            'email',
+            'nama_jabatan',
+        )
         ->orderBy('a.id', 'DESC');
 
         if ($filter != null) {
@@ -36,8 +44,8 @@ class UserController extends Controller
             ->addIndexColumn()
             ->addColumn('aksi', function($user){
                 return '
-                    <button onclick="editform(`'. route('user.update',$user->id) .'`)" class="btn btn-info btn-xs">Edit</button>
-                    <button onclick="deleteform(`'. route('user.destroy',$user->id) .'`)" class="btn btn-danger btn-xs">Hapus</button>
+                    <button onclick="editform(`'. route('user.update',$user->nik) .'`)" class="btn btn-info btn-xs">Edit</button>
+                    <button onclick="deleteform(`'. route('user.destroy',$user->nik) .'`)" class="btn btn-danger btn-xs">Hapus</button>
                 ';
             })
             ->rawColumns(['aksi'])

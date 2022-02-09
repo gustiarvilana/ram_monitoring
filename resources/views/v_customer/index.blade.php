@@ -24,6 +24,17 @@
                                     <label for="filter_name">Masukan NIK Kolektor</label>
                                     <input type="text" class="form-control filter" name="filter_kolektor" id="filter_kolektor" placeholder="nik kolektor">
                                     <br>
+
+                                    <div class="col">
+                                        <label for="filter_name">Filter Tahap</label>
+                                        
+                                        <select name="filter_tahap" id="filter_tahap" class="filter">
+                                            <option value="">Pilih Tahap Upload</option>
+                                            <option value="1">Tahap 1</option>
+                                            <option value="2">Tahap 2</option>
+                                        </select>
+                                    </div>
+
                                 </div>
                                 <div class="col-lg-6 col-xs-6">
                                     <div class="col">
@@ -66,6 +77,7 @@
                         <th>Status Bayar</th>
                         <th> = Nominal = </th>
                         <th> Selisih </th>
+                        <th>Tahap Data</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -80,6 +92,7 @@
 @push('script')
 <script>
     let name = $("#filter_name").val() 
+    let tahap = $("#filter_tahap").val() 
     let kolektor = $("#filter_kolektor").val() 
     let jenis = $("#filter_jenis").val() 
     let sts_bayar = $("#filter_sts_bayar").val() 
@@ -94,6 +107,7 @@
                 url: '{{ route('customer.data') }}',
                 data: function(d){
                     d.name = name;
+                    d.tahap = tahap;
                     d.kolektor = kolektor;
                     d.jenis = jenis;
                     d.sts_bayar = sts_bayar;
@@ -111,6 +125,7 @@
                 {data: 'sts_bayar'},
                 {data: 'sesuai_bayar'},
                 {data: 'selisih'},
+                {data: 'tahap_data'},
                 {data: 'aksi'},
             ],
 
@@ -207,14 +222,12 @@
 
     $(".filter").on('change',function () { 
         name = $("#filter_name").val() 
+        tahap = $("#filter_tahap").val()
         kolektor = $("#filter_kolektor").val() 
         jenis = $("#filter_jenis").val() 
         sts_bayar = $("#filter_sts_bayar").val() 
 
-        console.log(name);
-        console.log(kolektor);
-        console.log(jenis);
-        console.log(sts_bayar);
+        console.log([name,tahap,kolektor,jenis,sts_bayar]);
         
         $('#table').DataTable().ajax.reload(null,false)
     });
