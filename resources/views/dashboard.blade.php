@@ -2,7 +2,10 @@
 
 @section('title')
     Dashboard
-    
+    <div>
+        {{-- <small><p> Taggal Update = {{ tanggal_indonesia($tgl_update->payment_date) }} </p></small> --}}
+        <small><p> Taggal Update = {{$tgl_update->payment_date }} </p></small>
+    </div>
 @endsection
 
 @push('css')
