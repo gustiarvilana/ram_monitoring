@@ -81,7 +81,8 @@
                 <h1>
                     @yield('title')
                     <div>
-                        <small><b>Periode = {{ tanggal_indonesia(date('Y-m-d',strtotime("-1 days"))) }}</b></small>
+                        {{-- <small><p> Taggal Update = {{ tanggal_indonesia($tgl_update->payment_date) }} </p></small> --}}
+                        <small><p> Taggal Update = {{$tgl_update->payment_date }} </p></small>
                     </div>
                 </h1>
                 <ol class="breadcrumb">

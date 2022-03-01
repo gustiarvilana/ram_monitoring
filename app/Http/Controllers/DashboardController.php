@@ -6,6 +6,7 @@ use App\Models\Jabatan;
 use App\Models\Master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -19,6 +20,7 @@ class DashboardController extends Controller
         $loginLevel=Auth::user()->nik;
         $jabatan = Jabatan::where('kode_jabatan',Auth::user()->level)->pluck('nama_kolom')->first();
                 // dd($loginLevel);
+        $tgl_update = DB::table('tb_faspay')->orderBy('payment_date','desc')->first();
 
         if (Auth::user()->level == '11' || Auth::user()->level == '12' || Auth::user()->level == '13') {
             $master = Master::with('jenis')->where($jabatan, $loginLevel )->get();
@@ -64,7 +66,8 @@ class DashboardController extends Controller
             'count_tercapai_P1',
             'count_tercapai_P1_murni',
             'count_tercapai_P2',
-            'count_tercapai_P2_murni'
+            'count_tercapai_P2_murni',
+            'tgl_update',
         ));
     }
 
