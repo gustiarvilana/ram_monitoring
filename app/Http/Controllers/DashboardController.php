@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $loginLevel=Auth::user()->nik;
         $jabatan = Jabatan::where('kode_jabatan',Auth::user()->level)->pluck('nama_kolom')->first();
                 // dd($loginLevel);
-        $tgl_update = DB::table('tb_faspay')->orderBy('payment_date','desc')->first();
+        $tgl_update = DB::table('tb_master')->orderBy('tgl_bayar','desc')->first();
 
         if (Auth::user()->level == '11' || Auth::user()->level == '12' || Auth::user()->level == '13') {
             $master = Master::with('jenis')->where($jabatan, $loginLevel )->get();
