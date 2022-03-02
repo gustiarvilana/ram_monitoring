@@ -44,7 +44,7 @@
                         <div class="small-box @if ($count_tercapai_A2 != null) @if ($count_tercapai_A2 / $count_A2 * 100 > 30) bg-green @else  bg-red @endif @else bg-red @endif">
                             <div class="inner">
                                 <center>
-                                    <h3> @if ($count_tercapai_A2 != null) {{ round($count_tercapai_A2 / $count_A2 * 100,1) }}% @else 0% @endif </h3>
+                                    <h3> @if ($count_tercapai_A2 != null) {{ round($count_tercapai_A2 / $count_A2 * 100) }}% @else 0% @endif </h3>
                                     <p>Konsumen A2</p>
                                 </center>
                             </div>
@@ -60,7 +60,7 @@
                         <div class="small-box @if ($count_tercapai_A2_murni != null ) @if ($count_tercapai_A2_murni / $count_A2_murni * 100 > 30) bg-green @else bg-red @endif @else bg-red @endif" >
                             <div class="inner">
                                 <center>
-                                    <h3>@if ($count_tercapai_A2_murni != null) {{ round($count_tercapai_A2_murni / $count_A2_murni * 100,1) }}% @else 0% @endif </h3>
+                                    <h3>@if ($count_tercapai_A2_murni != null) {{ round($count_tercapai_A2_murni / $count_A2_murni * 100) }}% @else 0% @endif </h3>
                                     <p>Murni</p>
                                 </center>
                             </div>
@@ -76,8 +76,8 @@
                         <div class="small-box  @if ($count_tercapai_P1 != null) @if ($count_tercapai_P1 / $count_P1 * 100 > 30) bg-green @else bg-red @endif @else bg-red @endif">
                             <div class="inner">
                                 <center>
-                                    <h3> @if ($count_tercapai_P1 != null) {{ round($count_tercapai_P1 / $count_P1 * 100,1) }}% @else 0% @endif </h3>
-                                    <p>Konsumen P1 </p>
+                                    <h3> @if ($count_tercapai_P1 != null) {{ round($count_tercapai_P1 / $count_P1 * 100) }}% @else 0% @endif </h3>
+                                    <p>Konsumen P1 A2 </p>
                                 </center>
                             </div>
                             <div class="icon">
@@ -93,7 +93,7 @@
                             <div class="inner">
                                 <center>
                                     <h3> @if ($count_tercapai_P1_murni != null)
-                                        {{ round($count_tercapai_P1_murni / $count_P1_murni * 100,1) }}%
+                                        {{ round($count_tercapai_P1_murni / $count_P1_murni * 100) }}%
                                     @else 0%
                                     @endif </h3>
                                     <p>Konsumen P1 Murni</p>
@@ -123,10 +123,10 @@
                                 <div class="inner">
                                     <center>
                                         <h3>@if ($count_tercapai_P2 != null)
-                                            {{ round($count_tercapai_P2 / $count_P2 * 100,1) }}%
+                                            {{ round($count_tercapai_P2 / $count_P2 * 100) }}%
                                         @else 0%
                                         @endif </h3>
-                                        <p>Konsumen P2 </p>
+                                        <p>Konsumen P2 A2 </p>
                                     </center>
                                 </div>
                                 <div class="icon">
@@ -147,7 +147,7 @@
                                 <div class="inner">
                                     <center>
                                         <h3> @if ($count_tercapai_P1_murni != null)
-                                            {{ round($count_tercapai_P1_murni / $count_P1_murni * 100,1) }}%
+                                            {{ round($count_tercapai_P1_murni / $count_P1_murni * 100) }}%
                                         @else 0%
                                         @endif</h3>
                                         <p>Konsumen P2 Murni </p>
