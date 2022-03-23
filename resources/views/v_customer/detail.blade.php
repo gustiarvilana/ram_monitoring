@@ -28,6 +28,11 @@ Customer Detail
                             <th>{{ $customer->nama_konsumen }}</th>
                         </tr>
                         <tr>
+                            <th>No Hp</th>
+                            <th>:</th>
+                            <th>{{ $customer->nohp }}</th>
+                        </tr>
+                        <tr>
                             <th>Total Harga</th>
                             <th>:</th>
                             <th>Rp. {{ format_uang($customer->besar_angsur_bln * 10) }}</th>

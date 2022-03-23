@@ -2,7 +2,7 @@
 
 @section('title')
     Dashboard
-    <div> 
+    <div>
         {{-- <small><p> Taggal Update = {{ tanggal_indonesia($tgl_update->payment_date) }} </p></small> --}}
         <small><p> Taggal Update = {{$tgl_update->tgl_bayar }} </p></small>
     </div>
@@ -41,7 +41,7 @@
                     <!-- ./col A2 Murni -->
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div class="small-box @if ($count_tercapai_A2 != null) @if ($count_tercapai_A2 / $count_A2 * 100 > 30) bg-green @else  bg-red @endif @else bg-red @endif">
+                        <div class="small-box bg-green">
                             <div class="inner">
                                 <center>
                                     <h3> @if ($count_tercapai_A2 != null) {{ round($count_tercapai_A2 / $count_A2 * 100) }}% @else 0% @endif </h3>
@@ -57,7 +57,7 @@
                     <!-- ./col -->
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div class="small-box @if ($count_tercapai_A2_murni != null ) @if ($count_tercapai_A2_murni / $count_A2_murni * 100 > 30) bg-green @else bg-red @endif @else bg-red @endif" >
+                        <div class="small-box bg-green" >
                             <div class="inner">
                                 <center>
                                     <h3>@if ($count_tercapai_A2_murni != null) {{ round($count_tercapai_A2_murni / $count_A2_murni * 100) }}% @else 0% @endif </h3>
@@ -73,7 +73,7 @@
                     <!-- ./col -->
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div class="small-box  @if ($count_tercapai_P1 != null) @if ($count_tercapai_P1 / $count_P1 * 100 > 30) bg-green @else bg-red @endif @else bg-red @endif">
+                        <div class="small-box bg-yellow">
                             <div class="inner">
                                 <center>
                                     <h3> @if ($count_tercapai_P1 != null) {{ round($count_tercapai_P1 / $count_P1 * 100) }}% @else 0% @endif </h3>
@@ -89,7 +89,7 @@
                     <!-- ./col -->
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div class="small-box @if ($count_tercapai_P1_murni != null) @if ($count_tercapai_P1_murni / $count_P1_murni * 100 > 30) bg-green @else bg-red @endif @else bg-red @endif ">
+                        <div class="small-box bg-yellow ">
                             <div class="inner">
                                 <center>
                                     <h3> @if ($count_tercapai_P1_murni != null)
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <!-- ./col -->
-                    
+
                 </div>
                 <div class="row">
                     <center>
@@ -116,10 +116,7 @@
                         <!-- ./col A2 Murni -->
                         <div class="col-lg-3 col-xs-12">
                         <!-- small box -->
-                            <div class="small-box @if ($count_tercapai_P2 != null)
-                                @if ($count_tercapai_P2 / $count_P2 * 100 > 30) bg-green @else bg-red @endif
-                                @else bg-red
-                            @endif">
+                            <div class="small-box bg-red">
                                 <div class="inner">
                                     <center>
                                         <h3>@if ($count_tercapai_P2 != null)
@@ -139,11 +136,7 @@
                         <!-- ./col A2 Murni -->
                         <div class="col-lg-3 col-xs-12">
                         <!-- small box -->
-                            <div class="small-box  @if ($count_tercapai_P1_murni != null)
-                                @if ($count_tercapai_P1_murni / $count_P1_murni * 100 > 30) bg-green @else bg-red @endif
-                                @else
-                                bg-red
-                            @endif ">
+                            <div class="small-box bg-red">
                                 <div class="inner">
                                     <center>
                                         <h3> @if ($count_tercapai_P1_murni != null)

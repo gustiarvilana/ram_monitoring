@@ -27,7 +27,7 @@
 
                                     <div class="col">
                                         <label for="filter_name">Filter Tahap</label>
-                                        
+
                                         <select name="filter_tahap" id="filter_tahap" class="filter">
                                             <option value="">Pilih Tahap Upload</option>
                                             <option value="1">Tahap 1</option>
@@ -39,7 +39,7 @@
                                 <div class="col-lg-6 col-xs-6">
                                     <div class="col">
                                         <label for="filter_name">Filter Jenis</label>
-                                        
+
                                         <select name="filter_jenis" id="filter_jenis" class="filter">
                                             <option value="">Pilih Jenis Konsumen</option>
                                             @foreach ($jenis as $item)
@@ -47,10 +47,10 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    
+
                                     <div class="col">
                                         <label for="filter_name">Filter Status</label>
-                                    
+
                                     <select name="filter_sts_bayar" id="filter_sts_bayar" class="filter">
                                         <option value="">Pilih Status Bayar</option>
                                         <option value="9">Sudah Bayar</option>
@@ -70,6 +70,7 @@
                         <th>No SP</th>
                         <th>No Kwitansi</th>
                         <th>Nama</th>
+                        <th>No Hp</th>
                         <th>Kecamatan</th>
                         <th>Kota</th>
                         <th>Jenis</th>
@@ -91,11 +92,11 @@
 
 @push('script')
 <script>
-    let name = $("#filter_name").val() 
-    let tahap = $("#filter_tahap").val() 
-    let kolektor = $("#filter_kolektor").val() 
-    let jenis = $("#filter_jenis").val() 
-    let sts_bayar = $("#filter_sts_bayar").val() 
+    let name = $("#filter_name").val()
+    let tahap = $("#filter_tahap").val()
+    let kolektor = $("#filter_kolektor").val()
+    let jenis = $("#filter_jenis").val()
+    let sts_bayar = $("#filter_sts_bayar").val()
 
     $(document).ready(function () {
 
@@ -118,6 +119,7 @@
                 {data: 'nosp'},
                 {data: 'kwitansi'},
                 {data: 'nama_konsumen'},
+                {data: 'nohp'},
                 {data: 'kecamatan'},
                 {data: 'kodekota.nama_kota' },
                 {data: 'jenis.nama_jenis'},
@@ -220,15 +222,15 @@
         }
     }
 
-    $(".filter").on('change',function () { 
-        name = $("#filter_name").val() 
+    $(".filter").on('change',function () {
+        name = $("#filter_name").val()
         tahap = $("#filter_tahap").val()
-        kolektor = $("#filter_kolektor").val() 
-        jenis = $("#filter_jenis").val() 
-        sts_bayar = $("#filter_sts_bayar").val() 
+        kolektor = $("#filter_kolektor").val()
+        jenis = $("#filter_jenis").val()
+        sts_bayar = $("#filter_sts_bayar").val()
 
         console.log([name,tahap,kolektor,jenis,sts_bayar]);
-        
+
         $('#table').DataTable().ajax.reload(null,false)
     });
 </script>

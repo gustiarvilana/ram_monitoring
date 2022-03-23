@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="{{ asset("assets") }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- DataTables Button -->
     <link rel="stylesheet" href="{{ asset("assets") }}/bower_components/datatables.net-bs/css/buttons.dataTables.min.css">
-    
+
     @stack('css')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -30,6 +30,7 @@
                         <th>No SP</th>
                         <th>No Kwitansi</th>
                         <th>Nama</th>
+                        <th>No Hp</th>
                         <th>Kecamatan</th>
                         <th>Kota</th>
                         <th>Jenis</th>
@@ -53,7 +54,7 @@
 
 @push('script')
 <script>
-    let name = $("#filter_name").val() 
+    let name = $("#filter_name").val()
 
     $(document).ready(function () {
 
@@ -72,6 +73,7 @@
                 {data: 'nosp'},
                 {data: 'kwitansi'},
                 {data: 'nama_konsumen'},
+                {data: 'nohp'},
                 {data: 'kecamatan'},
                 {data: 'kodekota.nama_kota' },
                 {data: 'jenis.nama_jenis'},
@@ -176,11 +178,11 @@
         }
     }
 
-    $(".filter").on('change',function () { 
-        name = $("#filter_name").val() 
+    $(".filter").on('change',function () {
+        name = $("#filter_name").val()
 
         console.log(name);
-        
+
         $('#table').DataTable().ajax.reload(null,false)
     });
 </script>

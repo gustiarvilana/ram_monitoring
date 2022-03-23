@@ -25,7 +25,7 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request)
-    {   
+    {
         $loginLevel=Auth::user()->nik;
         $jabatan = Jabatan::where('kode_jabatan',Auth::user()->level)->pluck('nama_kolom')->first();
 
@@ -44,11 +44,11 @@ class CustomerController extends Controller
                 ->orWhere('kwitansi', $filter )
                 ->orWhere('alamat', $filter );
             }
-            
+
             if ($filter_kolektor != null) {
                 $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                 ->where('kd_kolektor', $filter_kolektor );
-                
+
                 if ($filter_tahap != null) {
                     $customer = Master::with('kodekota')->with('Jenis')->where($jabatan, $loginLevel )
                     ->where('kd_kolektor', $filter_kolektor );
@@ -99,7 +99,7 @@ class CustomerController extends Controller
                 ->orWhere('kwitansi', $filter )
                 ->orWhere('alamat', $filter );
             }
-            
+
             if ($filter_kolektor != null) {
                 $customer = Master::with('kodekota')->with('Jenis')
                 ->where('kd_kolektor', $filter_kolektor );
@@ -159,14 +159,14 @@ class CustomerController extends Controller
                     }
                     return;
                 }
-                
+
             })
             ->addColumn('selisih', function($customer){
                 if ($customer->nominal_bayar) {
                     $selisih = $customer->besar_angsur_bln - $customer->nominal_bayar;
                     return $selisih;
                 }
-                
+
             })
             ->addColumn('aksi', function($customer){
                 return '
@@ -217,7 +217,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
     }
 
     /**
@@ -229,10 +229,11 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customer = Master::with('tagihan')->where('nosp',$id)->first();
+        // dd($customer);
         $kwitansi = $customer['kwitansi'];
         $kwitansi_9=substr($kwitansi,0,9);
         // dd($customer);
-        
+
         $tagihan = Tagihan::where('no_kwitansi',$kwitansi_9)->orderBy('cicilan_ke','asc')->get();
 
         return view('v_customer.detail',compact('customer','tagihan'));
@@ -271,7 +272,7 @@ class CustomerController extends Controller
     {
         //
     }
-   
+
     public function list()
     {
         $jenis=Jenis::get();
