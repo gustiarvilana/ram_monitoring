@@ -108,7 +108,8 @@
                     <!-- ./col -->
 
                 </div>
-                <div class="row">
+                {{-- p2 --}}
+                {{-- <div class="row">
                     <center>
                         <!-- ./col A2 Murni -->
                         <div class="col-lg-3 col-xs-6"></div>
@@ -157,7 +158,7 @@
                         <div class="col-lg-3 col-xs-6"></div>
                         <!-- ./col -->
                     </center>
-                    </div>
+                    </div> --}}
                 <!-- /.row -->
                 <br>
                 <hr>
