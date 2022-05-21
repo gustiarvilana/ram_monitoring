@@ -21,31 +21,31 @@ class UserController extends Controller
         $filter = $request->input('name');
 
         $user = DB::table('users as a')
-        ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
-        ->select(
-            'nik',
-            'name',
-            'username',
-            'pass',
-            'email',
-            'nama_jabatan',
-        )
-        ->orderBy('a.id', 'DESC');
+            ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
+            ->select(
+                'nik',
+                'name',
+                'username',
+                'pass',
+                'email',
+                'nama_jabatan',
+            )
+            ->orderBy('a.id', 'DESC');
 
         if ($filter != null) {
             $user = DB::table('users as a')
-        ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
-        ->where('name','like', '%' . $filter . '%');
+                ->Join('tbl_jabatan as b', 'a.level', 'b.kode_jabatan')
+                ->where('name', 'like', '%' . $filter . '%');
         }
 
         // dd($user);
 
         return datatables()::of($user)
             ->addIndexColumn()
-            ->addColumn('aksi', function($user){
+            ->addColumn('aksi', function ($user) {
                 return '
-                    <button onclick="editform(`'. route('user.update',$user->nik) .'`)" class="btn btn-info btn-xs">Edit</button>
-                    <button onclick="deleteform(`'. route('user.destroy',$user->nik) .'`)" class="btn btn-danger btn-xs">Hapus</button>
+                    <button onclick="editform(`' . route('user.update', $user->nik) . '`)" class="btn btn-info btn-xs">Edit</button>
+                    <button onclick="deleteform(`' . route('user.destroy', $user->nik) . '`)" class="btn btn-danger btn-xs">Hapus</button>
                 ';
             })
             ->rawColumns(['aksi'])
@@ -55,7 +55,7 @@ class UserController extends Controller
     public function index()
     {
         $jabatan = DB::table('tbl_jabatan')->get();
-        return view('user.index',compact('jabatan'));
+        return view('user.index', compact('jabatan'));
     }
 
     /**
@@ -80,12 +80,12 @@ class UserController extends Controller
         $pass = $user['password'];
         $user['password'] = Hash::make($request->input('password'));
         User::create($user);
-        
-        // pass
-        $user_ = User::where('username',$user['username']);
-        $user_->update(['pass'=>$pass]);
 
-        return response()->json('Data Berhasil Disimpan',200);
+        // pass
+        $user_ = User::where('username', $user['username']);
+        $user_->update(['pass' => $pass]);
+
+        return response()->json('Data Berhasil Disimpan', 200);
     }
 
     /**
@@ -97,6 +97,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        // dd($user);
         return response()->json($user);
     }
 
@@ -123,14 +124,14 @@ class UserController extends Controller
         $data = $request->all();
         $user = User::find($id);
         $pass = $data['password'];
-        
+
         $data['password'] = Hash::make($request->input('password'));
 
 
-        $user->update(['pass'=>$pass]);
+        $user->update(['pass' => $pass]);
         $user->update($data);
 
-        return response()->json('Data Berhasil Update',200);
+        return response()->json('Data Berhasil Update', 200);
     }
 
     /**
@@ -144,6 +145,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return response(null,204);
+        return response(null, 204);
     }
 }
